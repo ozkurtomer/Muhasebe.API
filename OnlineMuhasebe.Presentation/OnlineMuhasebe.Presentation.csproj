@@ -7,11 +7,12 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Controller\" />
+    <PackageReference Include="MediatR" Version="11.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <ProjectReference Include="..\OnlineMuhasebe.Application\OnlineMuhasebe.Application.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,7 +1,11 @@
+using MediatR;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.OpenApi.Models;
+using OnlineMuhasebe.Application.Services.AppServices;
+using OnlineMuhasebe.Domain.AppEntities.Identities;
 using OnlineMuhasebe.Persistence.Context;
+using OnlineMuhasebe.Persistence.Services.AppServices;
 using OnlineMuhasebe.Presentation;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -12,6 +16,12 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("SqlServer"));
 });
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>();
+
+builder.Services.AddScoped<ICompanyService, CompanyServices>();
+
+builder.Services.AddMediatR(typeof(OnlineMuhasebe.Application.AssemblyReference).Assembly);
+builder.Services.AddAutoMapper(typeof(OnlineMuhasebe.Persistence.AssemblyReference).Assembly);
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(setup =>
