@@ -1,16 +1,21 @@
 using MediatR;
-using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.EntityFrameworkCore;
+using OnlineMuhasebe.Domain;
 using Microsoft.OpenApi.Models;
-using OnlineMuhasebe.Application.Services.AppServices;
-using OnlineMuhasebe.Domain.AppEntities.Identities;
+using OnlineMuhasebe.Persistence;
+using Microsoft.EntityFrameworkCore;
 using OnlineMuhasebe.Persistence.Context;
+using OnlineMuhasebe.Domain.AppEntities.Identities;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using OnlineMuhasebe.Application.Services.AppServices;
 using OnlineMuhasebe.Persistence.Services.AppServices;
-using OnlineMuhasebe.Presentation;
+using OnlineMuhasebe.Persistence.Services.CompanyServices;
+using OnlineMuhasebe.Application.Services.CompanyServices;
+using OnlineMuhasebe.Domain.Repositories.UniformChartOfAccountRepositories;
+using OnlineMuhasebe.Persistence.Repositories.UniformCharOfAccountRepositories;
 
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers().AddApplicationPart(typeof(AssemblyReference).Assembly);
+builder.Services.AddControllers().AddApplicationPart(typeof(OnlineMuhasebe.Presentation.AssemblyReference).Assembly);
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 {
@@ -19,6 +24,11 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<AppDbContext>();
 
 builder.Services.AddScoped<ICompanyService, CompanyServices>();
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped<IUniformChartOfAccountCommandRepository, UniformChartOfAccountCommandRepository>();
+builder.Services.AddScoped<IUniformChartOfAccountQueryRepository, UniformChartOfAccountQueryRepository>();
+builder.Services.AddScoped<IContextService, ContextService>();
+builder.Services.AddScoped<IUniformChartOfAccountService, UniformChartOfAccountService>();
 
 builder.Services.AddMediatR(typeof(OnlineMuhasebe.Application.AssemblyReference).Assembly);
 builder.Services.AddAutoMapper(typeof(OnlineMuhasebe.Persistence.AssemblyReference).Assembly);
