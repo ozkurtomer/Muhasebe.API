@@ -1,32 +1,23 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using OnlineMuhasebe.Domain.AppEntities.Identities;
+using OnlineMuhasebe.Application.Services.AppServices;
 
 namespace OnlineMuhasebe.Application.Features.AppFeatures.RoleFeatures.Commands.CreateRole;
 
 public class CreateRoleHandler : IRequestHandler<CreateRoleRequest, CreateRoleResponse>
 {
-    private readonly RoleManager<AppRole> RoleManager;
+    private readonly IRoleService RoleService;
 
-    public CreateRoleHandler(RoleManager<AppRole> roleManager)
+    public CreateRoleHandler(IRoleService roleService)
     {
-        RoleManager = roleManager;
+        RoleService = roleService;
     }
 
     public async Task<CreateRoleResponse> Handle(CreateRoleRequest request, CancellationToken cancellationToken)
     {
-        var role = await RoleManager.Roles.Where(x => x.Code == request.Code).FirstOrDefaultAsync();
+        var role = await RoleService.GetByCodeRoleAsync(request.Code);
         if (role != null) throw new Exception("Rol daha önce kayıt edilmiştir!");
 
-        role = new AppRole()
-        {
-            Id = Guid.NewGuid().ToString(),
-            Name = request.Name,
-            Code = request.Code
-        };
-
-        await RoleManager.CreateAsync(role);
+        await RoleService.AddAsync(request);
         return new();
     }
 }

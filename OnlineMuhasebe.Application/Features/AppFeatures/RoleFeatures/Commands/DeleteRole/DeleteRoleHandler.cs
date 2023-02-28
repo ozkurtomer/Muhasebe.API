@@ -1,24 +1,23 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Identity;
-using OnlineMuhasebe.Domain.AppEntities.Identities;
+using OnlineMuhasebe.Application.Services.AppServices;
 
 namespace OnlineMuhasebe.Application.Features.AppFeatures.RoleFeatures.Commands.DeleteRole;
 
 public sealed class DeleteRoleHandler : IRequestHandler<DeleteRoleRequest, DeleteRoleResponse>
 {
-    private readonly RoleManager<AppRole> RoleManager;
+    private readonly IRoleService RoleService;
 
-    public DeleteRoleHandler(RoleManager<AppRole> roleManager)
+    public DeleteRoleHandler(IRoleService roleService)
     {
-        RoleManager = roleManager;
+        RoleService = roleService;
     }
 
     public async Task<DeleteRoleResponse> Handle(DeleteRoleRequest request, CancellationToken cancellationToken)
     {
-        var role = await RoleManager.FindByIdAsync(request.Id);
+        var role = await RoleService.GetByIdRoleAsync(request.Id);
         if (role == null) throw new Exception("Silmek istediğiniz rol bulunamadı");
 
-        await RoleManager.DeleteAsync(role);
+        await RoleService.DeleteAsync(request);
         return new();
     }
 }

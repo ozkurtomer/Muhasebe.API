@@ -1,33 +1,31 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using OnlineMuhasebe.Domain.AppEntities.Identities;
+using OnlineMuhasebe.Application.Services.AppServices;
 
 namespace OnlineMuhasebe.Application.Features.AppFeatures.RoleFeatures.Commands.UpdateRole;
 
 public sealed class UpdateRoleHandler : IRequestHandler<UpdateRoleRequest, UpdateRoleResponse>
 {
-    private readonly RoleManager<AppRole> RoleManager;
+    private readonly IRoleService RoleService;
 
-    public UpdateRoleHandler(RoleManager<AppRole> roleManager)
+    public UpdateRoleHandler(IRoleService roleService)
     {
-        RoleManager = roleManager;
+        RoleService = roleService;
     }
 
     public async Task<UpdateRoleResponse> Handle(UpdateRoleRequest request, CancellationToken cancellationToken)
     {
-        var role = await RoleManager.FindByIdAsync(request.Id);
+        var role = await RoleService.GetByIdRoleAsync(request.Id);
         if (role == null) throw new Exception("Rol bulunamadı!");
 
-        if(role.Code != request.Code)
+        if (role.Code != request.Code)
         {
-            var checkCode = await RoleManager.Roles.FirstOrDefaultAsync(x=>x.Equals(role.Code));
+            var checkCode = await RoleService.GetByCodeRoleAsync(role.Code);
             if (checkCode != null) throw new Exception("Girdiğiniz kod daha önce kaydedilmiştir!");
         }
 
-        role.Code= request.Code;
+        role.Code = request.Code;
         role.Name = request.Name;
-        await RoleManager.UpdateAsync(role);
+        await RoleService.UpdateAsync(role);
 
         return new();
     }

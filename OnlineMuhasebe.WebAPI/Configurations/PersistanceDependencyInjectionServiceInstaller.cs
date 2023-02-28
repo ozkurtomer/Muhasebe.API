@@ -19,8 +19,9 @@ public class PersistanceDependencyInjectionServiceInstaller : IServiceInstaller
         #endregion
 
         #region Services
-        serviceDescriptors.AddScoped<ICompanyService, CompanyServices>();
+        serviceDescriptors.AddScoped<ICompanyService, CompanyService>();
         serviceDescriptors.AddScoped<IUniformChartOfAccountService, UniformChartOfAccountService>();
+        serviceDescriptors.AddScoped<IRoleService, RoleService>();
 
         #endregion
 

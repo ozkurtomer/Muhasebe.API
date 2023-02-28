@@ -8,7 +8,7 @@ using OnlineMuhasebe.Application.Features.AppFeatures.CompanyFeatures.Commands.M
 
 namespace OnlineMuhasebe.Persistence.Services.AppServices;
 
-public sealed class CompanyServices : ICompanyService
+public sealed class CompanyService : ICompanyService
 {
     private static readonly Func<AppDbContext, string, Task<Company?>> GetCompanyByNameCompiled = EF.CompileAsyncQuery((AppDbContext context, string name) =>
         context.Set<Company>().FirstOrDefault(x => x.CompanyName == name)
@@ -17,7 +17,7 @@ public sealed class CompanyServices : ICompanyService
     private readonly AppDbContext AppDbContext;
     private readonly IMapper Mapper;
 
-    public CompanyServices(AppDbContext appDbContext, IMapper mapper)
+    public CompanyService(AppDbContext appDbContext, IMapper mapper)
     {
         AppDbContext = appDbContext;
         Mapper = mapper;
