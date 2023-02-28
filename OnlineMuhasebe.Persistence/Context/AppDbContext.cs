@@ -5,6 +5,7 @@ using OnlineMuhasebe.Domain.AppEntities.Identities;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.AspNetCore.Identity;
 
 namespace OnlineMuhasebe.Persistence.Context;
 
@@ -34,6 +35,14 @@ public sealed class AppDbContext : IdentityDbContext<AppUser, AppRole, string>
             }
         }
         return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+    }
+
+    protected override void OnModelCreating(ModelBuilder builder)
+    {
+        builder.Ignore<IdentityUserLogin<string>>();
+        builder.Ignore<IdentityUserRole<string>>();
+        builder.Ignore<IdentityUserClaim<string>>();
+        builder.Ignore<IdentityUserToken<string>>();
     }
 
     public class AppDbContextFactory : IDesignTimeDbContextFactory<AppDbContext>
