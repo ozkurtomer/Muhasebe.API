@@ -1,22 +1,20 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using OnlineMuhasebe.Domain.AppEntities.Identities;
+using OnlineMuhasebe.Application.Services.AppServices;
 
 namespace OnlineMuhasebe.Application.Features.AppFeatures.RoleFeatures.Queries.GetAllRoles;
 
 public sealed class GetAllRolesHandler : IRequestHandler<GetAllRolesRequest, GetAllRolesResponse>
 {
-    private readonly RoleManager<AppRole> RoleManager;
+    private readonly IRoleService RoleService;
 
-    public GetAllRolesHandler(RoleManager<AppRole> roleManager)
+    public GetAllRolesHandler(IRoleService roleService)
     {
-        RoleManager = roleManager;
+        RoleService = roleService;
     }
 
     public async Task<GetAllRolesResponse> Handle(GetAllRolesRequest request, CancellationToken cancellationToken)
     {
-        var result = await RoleManager.Roles.ToListAsync();
+        var result = await RoleService.GetAllRolesAsync();
         return new GetAllRolesResponse { Roles = result };
     }
 }
