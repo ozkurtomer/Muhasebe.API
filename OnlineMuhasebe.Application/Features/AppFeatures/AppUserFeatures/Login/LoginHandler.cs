@@ -26,6 +26,14 @@ public class LoginHandler : IRequestHandler<LoginRequest, LoginResponse>
         if (!checkUser)
             throw new Exception("Şifreniz hatalı!");
 
+        LoginResponse response = new()
+        {
+            Email = user.Email,
+            NameLastName = user.NameLastName,
+            UserId = user.Id,
+            Token = await JwtProvider.CreateTokenAsync(user, null)
+        };
 
+        return response;
     }
 }
