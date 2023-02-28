@@ -11,6 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Features\AppFeatures\AppUserFeatures\Register\" />
     <Folder Include="Features\AppFeatures\CompanyFeatures\Queries\" />
     <Folder Include="Features\CompanyFeatures\UniformChartOfAccountFeatures\Queries\" />
   </ItemGroup>
