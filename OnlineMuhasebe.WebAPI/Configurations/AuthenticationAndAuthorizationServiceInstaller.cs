@@ -12,5 +12,7 @@ public class AuthenticationAndAuthorizationServiceInstaller : IServiceInstaller
         serviceDescriptors.ConfigureOptions<JwtBearerOptionsSetup>();
 
         serviceDescriptors.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer();
+
+        serviceDescriptors.AddAuthorization();
     }
 }
