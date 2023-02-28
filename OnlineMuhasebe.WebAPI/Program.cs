@@ -1,7 +1,9 @@
 
+using OnlineMuhasebe.WebAPI.Configurations;
+
 var builder = WebApplication.CreateBuilder(args);
 
-
+builder.Services.InstallService(builder.Configuration, typeof(IServiceInstaller).Assembly);
 
 var app = builder.Build();
 
