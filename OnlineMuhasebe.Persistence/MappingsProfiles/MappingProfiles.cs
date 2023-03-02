@@ -14,7 +14,7 @@ public class MappingProfiles : Profile
     public MappingProfiles()
     {
         CreateMap<CreateCompanyCommand, Company>().ReverseMap();
-        CreateMap<CreateUniformChartOfAccount, UniformChartOfAccount>().ReverseMap();
+        CreateMap<CreateUniformChartOfAccountCommand, UniformChartOfAccount>().ReverseMap();
         CreateMap<CreateRoleCommand, AppRole>().ReverseMap();
         CreateMap<UpdateRoleCommand, AppRole>().ReverseMap();
     }

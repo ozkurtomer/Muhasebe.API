@@ -3,7 +3,7 @@ using OnlineMuhasebe.Application.Services.CompanyServices;
 
 namespace OnlineMuhasebe.Application.Features.CompanyFeatures.UniformChartOfAccountFeatures.Commands.CreateUniformChartOfAccount;
 
-public sealed class CreateUniformChartOfAccountCommandHandler : ICommandHandler<CreateUniformChartOfAccount, CreateUniformChartOfAccountCommandResponse>
+public sealed class CreateUniformChartOfAccountCommandHandler : ICommandHandler<CreateUniformChartOfAccountCommand, CreateUniformChartOfAccountCommandResponse>
 {
     private readonly IUniformChartOfAccountService Service;
 
@@ -12,7 +12,7 @@ public sealed class CreateUniformChartOfAccountCommandHandler : ICommandHandler<
         Service = service;
     }
 
-    public async Task<CreateUniformChartOfAccountCommandResponse> Handle(CreateUniformChartOfAccount request, CancellationToken cancellationToken)
+    public async Task<CreateUniformChartOfAccountCommandResponse> Handle(CreateUniformChartOfAccountCommand request, CancellationToken cancellationToken)
     {
         await Service.CreateUniformChartOfAccountAsync(request, cancellationToken);
         return new();

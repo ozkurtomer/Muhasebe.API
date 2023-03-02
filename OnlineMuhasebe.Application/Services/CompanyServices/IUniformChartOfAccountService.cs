@@ -4,5 +4,5 @@ namespace OnlineMuhasebe.Application.Services.CompanyServices;
 
 public interface IUniformChartOfAccountService
 {
-    Task CreateUniformChartOfAccountAsync(CreateUniformChartOfAccount request, CancellationToken token);
+    Task CreateUniformChartOfAccountAsync(CreateUniformChartOfAccountCommand request, CancellationToken token);
 }

@@ -2,8 +2,8 @@
 
 namespace OnlineMuhasebe.Application.Features.CompanyFeatures.UniformChartOfAccountFeatures.Commands.CreateUniformChartOfAccount;
 
-public sealed record CreateUniformChartOfAccount(
+public sealed record CreateUniformChartOfAccountCommand(
     string CompanyId,
     string Code,
     string Name,
-    char Type) : ICommand<CreateUniformChartOfAccountCommandResponse>;
+    string Type) : ICommand<CreateUniformChartOfAccountCommandResponse>;
