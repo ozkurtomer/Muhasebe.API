@@ -1,18 +1,18 @@
-﻿using MediatR;
+﻿using OnlineMuhasebe.Application.Messaging;
 using OnlineMuhasebe.Application.Services.AppServices;
 
 namespace OnlineMuhasebe.Application.Features.AppFeatures.RoleFeatures.Commands.CreateRole;
 
-public class CreateRoleHandler : IRequestHandler<CreateRoleRequest, CreateRoleResponse>
+public class CreateRoleCommandHandler : ICommandHandler<CreateRoleCommand, CreateRoleCompanyResponse>
 {
     private readonly IRoleService RoleService;
 
-    public CreateRoleHandler(IRoleService roleService)
+    public CreateRoleCommandHandler(IRoleService roleService)
     {
         RoleService = roleService;
     }
 
-    public async Task<CreateRoleResponse> Handle(CreateRoleRequest request, CancellationToken cancellationToken)
+    public async Task<CreateRoleCompanyResponse> Handle(CreateRoleCommand request, CancellationToken cancellationToken)
     {
         var role = await RoleService.GetByCodeRoleAsync(request.Code);
         if (role != null) throw new Exception("Rol daha önce kayıt edilmiştir!");

@@ -23,7 +23,7 @@ public sealed class CompanyService : ICompanyService
         Mapper = mapper;
     }
 
-    public async Task CreateCompany(CreateCompanyRequest createCompanyRequest)
+    public async Task CreateCompany(CreateCompanyCommand createCompanyRequest)
     {
         Company company = Mapper.Map<Company>(createCompanyRequest);
         company.Id = Guid.NewGuid().ToString();
@@ -36,7 +36,7 @@ public sealed class CompanyService : ICompanyService
         return await GetCompanyByNameCompiled(AppDbContext, companyName);
     }
 
-    public async Task MigrateCompanyDbs(MigrateCompanyDbRequest migrateCompanyDbRequest)
+    public async Task MigrateCompanyDbs(MigrateCompanyDbCommand migrateCompanyDbRequest)
     {
         var companies = await AppDbContext.Companies.ToListAsync();
         foreach (var company in companies)

@@ -7,6 +7,6 @@ namespace OnlineMuhasebe.Application.Services.AppServices;
 public interface ICompanyService
 {
     Task<Company?> GetCompanyByName(string companyName);
-    Task MigrateCompanyDbs(MigrateCompanyDbRequest migrateCompanyDbRequest);
-    Task CreateCompany(CreateCompanyRequest createCompanyRequest);
+    Task MigrateCompanyDbs(MigrateCompanyDbCommand migrateCompanyDbRequest);
+    Task CreateCompany(CreateCompanyCommand createCompanyRequest);
 }

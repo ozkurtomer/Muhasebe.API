@@ -24,7 +24,7 @@ public sealed class UniformChartOfAccountService : IUniformChartOfAccountService
         Mapper = mapper;
     }
 
-    public async Task CreateUniformChartOfAccountAsync(CreateUniformChartOfAccountRequest request)
+    public async Task CreateUniformChartOfAccountAsync(CreateUniformChartOfAccount request)
     {
         Context = (CompanyDbContext)ContextService.CreateDbContextInstance(request.CompanyId);
         UniformChartOfAccountCommandRepository.SetDbContextInstance(Context);

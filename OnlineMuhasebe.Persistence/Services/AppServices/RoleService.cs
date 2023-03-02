@@ -19,7 +19,7 @@ public sealed class RoleService : IRoleService
         Mapper = mapper;
     }
 
-    public async Task AddAsync(CreateRoleRequest request)
+    public async Task AddAsync(CreateRoleCommand request)
     {
         var role = Mapper.Map<AppRole>(request);
         role.Id = Guid.NewGuid().ToString();
@@ -31,7 +31,7 @@ public sealed class RoleService : IRoleService
         await RoleManager.UpdateAsync(role);
     }
 
-    public async Task DeleteAsync(DeleteRoleRequest request)
+    public async Task DeleteAsync(DeleteRoleCommand request)
     {
         var role = await RoleManager.FindByIdAsync(request.Id);
         await RoleManager.DeleteAsync(role);
