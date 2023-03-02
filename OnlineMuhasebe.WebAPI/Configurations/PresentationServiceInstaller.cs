@@ -1,4 +1,5 @@
 ﻿using Microsoft.OpenApi.Models;
+using OnlineMuhasebe.WebAPI.Middleware;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace OnlineMuhasebe.WebAPI.Configurations;
@@ -7,6 +8,8 @@ public class PresentationServiceInstaller : IServiceInstaller
 {
     public void Install(IServiceCollection serviceDescriptors, IConfiguration configuration)
     {
+        serviceDescriptors.AddScoped<ExceptionMiddleware>();
+
         serviceDescriptors.AddControllers().AddApplicationPart(typeof(OnlineMuhasebe.Presentation.AssemblyReference).Assembly);
 
         serviceDescriptors.AddEndpointsApiExplorer();
