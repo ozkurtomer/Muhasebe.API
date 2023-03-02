@@ -14,7 +14,7 @@ public sealed class CreateUniformChartOfAccountCommandHandler : ICommandHandler<
 
     public async Task<CreateUniformChartOfAccountCommandResponse> Handle(CreateUniformChartOfAccount request, CancellationToken cancellationToken)
     {
-        await Service.CreateUniformChartOfAccountAsync(request);
+        await Service.CreateUniformChartOfAccountAsync(request, cancellationToken);
         return new();
     }
 }

@@ -23,12 +23,12 @@ public sealed class CompanyService : ICompanyService
         Mapper = mapper;
     }
 
-    public async Task CreateCompany(CreateCompanyCommand createCompanyRequest)
+    public async Task CreateCompany(CreateCompanyCommand createCompanyRequest, CancellationToken token)
     {
         Company company = Mapper.Map<Company>(createCompanyRequest);
         company.Id = Guid.NewGuid().ToString();
-        await AppDbContext.Set<Company>().AddAsync(company);
-        await AppDbContext.SaveChangesAsync();
+        await AppDbContext.Set<Company>().AddAsync(company,token);
+        await AppDbContext.SaveChangesAsync(token);
     }
 
     public async Task<Company?> GetCompanyByName(string companyName)

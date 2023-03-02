@@ -12,9 +12,9 @@ public class UniformChartOfAccountController : ApiController
     }
 
     [HttpPost("[action]")]
-    public async Task<IActionResult> CreateUniformChartOfAccount(CreateUniformChartOfAccount request)
+    public async Task<IActionResult> CreateUniformChartOfAccount(CreateUniformChartOfAccount request, CancellationToken token)
     {
-        var result = await Mediator.Send(request);
+        var result = await Mediator.Send(request, token);
         return Ok(result);
     }
 }

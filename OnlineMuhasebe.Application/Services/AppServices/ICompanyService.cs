@@ -8,5 +8,5 @@ public interface ICompanyService
 {
     Task<Company?> GetCompanyByName(string companyName);
     Task MigrateCompanyDbs(MigrateCompanyDbCommand migrateCompanyDbRequest);
-    Task CreateCompany(CreateCompanyCommand createCompanyRequest);
+    Task CreateCompany(CreateCompanyCommand createCompanyRequest, CancellationToken token);
 }

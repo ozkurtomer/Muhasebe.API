@@ -24,7 +24,7 @@ public sealed class UniformChartOfAccountService : IUniformChartOfAccountService
         Mapper = mapper;
     }
 
-    public async Task CreateUniformChartOfAccountAsync(CreateUniformChartOfAccount request)
+    public async Task CreateUniformChartOfAccountAsync(CreateUniformChartOfAccount request, CancellationToken token)
     {
         Context = (CompanyDbContext)ContextService.CreateDbContextInstance(request.CompanyId);
         UniformChartOfAccountCommandRepository.SetDbContextInstance(Context);
@@ -32,8 +32,8 @@ public sealed class UniformChartOfAccountService : IUniformChartOfAccountService
 
         UniformChartOfAccount uniformChartOfAccount = Mapper.Map<UniformChartOfAccount>(request);
         uniformChartOfAccount.Id = Guid.NewGuid().ToString();
-        await UniformChartOfAccountCommandRepository.AddAsync(uniformChartOfAccount);
+        await UniformChartOfAccountCommandRepository.AddAsync(uniformChartOfAccount, token);
 
-        await UnitOfWork.SaveChangesAsync();
+        await UnitOfWork.SaveChangesAsync(token);
     }
 }

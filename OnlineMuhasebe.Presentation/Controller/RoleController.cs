@@ -28,14 +28,14 @@ public class RoleController : ApiController
         var result = await Mediator.Send(request);
         return Ok(result);
     }
-    
+
     [HttpPost("[action]")]
     public async Task<IActionResult> UpdateRole(UpdateRoleCommand updateRoleRequest)
     {
         var result = await Mediator.Send(updateRoleRequest);
         return Ok(result);
     }
-    
+
     [HttpPost("[action]")]
     public async Task<IActionResult> DeleteRole(DeleteRoleCommand deleteRoleRequest)
     {

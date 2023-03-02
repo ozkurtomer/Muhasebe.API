@@ -18,7 +18,7 @@ public sealed class CreateCompanyCommandHandler : ICommandHandler<CreateCompanyC
         Company company = await CompanyService.GetCompanyByName(request.CompanyName);
         if (company != null) { throw new Exception("Girilen şirket adı daha önce kullanılmıştır!"); }
 
-        await CompanyService.CreateCompany(request);
+        await CompanyService.CreateCompany(request, cancellationToken);
 
         return new();
     }

@@ -20,14 +20,14 @@ public class CommandRepository<TEntity> : ICommandRepository<TEntity> where TEnt
         Entity = Context.Set<TEntity>();
     }
 
-    public async Task AddAsync(TEntity entity)
+    public async Task AddAsync(TEntity entity, CancellationToken token)
     {
-        await Entity.AddAsync(entity);
+        await Entity.AddAsync(entity, token);
     }
 
-    public async Task AddRangeAsync(IEnumerable<TEntity> entities)
+    public async Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken token)
     {
-        await Entity.AddRangeAsync(entities);
+        await Entity.AddRangeAsync(entities, token);
     }
 
     public void Remove(TEntity entity)
