@@ -16,7 +16,7 @@ public sealed class ValidationBehavior<TRequest, TResponse> : IPipelineBehavior<
 
     public async Task<TResponse> Handle(TRequest request, RequestHandlerDelegate<TResponse> next, CancellationToken cancellationToken)
     {
-        if (Validators.Any())
+        if (!Validators.Any())
         {
             return await next();
         }
