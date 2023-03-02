@@ -20,8 +20,8 @@ public sealed class Company : Entity
 
     public string CompanyDatabaseName { get; set; }
 
-    public string CompanyUserId { get; set; }
+    public string CompanyServerId { get; set; }
 
-    public string CompanyPassword { get; set; }
+    public string CompanyServerPassword { get; set; }
 
 }

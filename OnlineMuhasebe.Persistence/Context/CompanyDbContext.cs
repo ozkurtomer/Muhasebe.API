@@ -14,7 +14,7 @@ public sealed class CompanyDbContext : DbContext
     {
         if (company != null)
         {
-            if (string.IsNullOrEmpty(company.CompanyUserId))
+            if (string.IsNullOrEmpty(company.CompanyServerId))
             {
                 ConnectionString = $@"Data Source={company.CompanyServerName};
                                   Initial Catalog={company.CompanyDatabaseName};
@@ -29,8 +29,8 @@ public sealed class CompanyDbContext : DbContext
             {
                 ConnectionString = $@"Data Source={company.CompanyServerName};
                                   Initial Catalog={company.CompanyDatabaseName};
-                                  User Id={company.CompanyUserId};
-                                  Password={company.CompanyPassword};
+                                  User Id={company.CompanyServerId};
+                                  Password={company.CompanyServerPassword};
                                   Integrated Security=True;
                                   Connect Timeout=30;
                                   Encrypt=False;
