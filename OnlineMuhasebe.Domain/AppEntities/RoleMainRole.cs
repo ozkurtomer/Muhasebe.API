@@ -9,10 +9,10 @@ public sealed class RoleMainRole : Entity
     public string RoleId { get; set; }
     public string MainRoleId { get; set; }
 
-    [ForeignKey("AppRole")]
+    [ForeignKey("AppRoleId")]
     public AppRole AppRole { get; set; }
 
-    [ForeignKey("MainRole")]
+    [ForeignKey("MainRoleId")]
     public MainRole MainRole { get; set; }
 
 }

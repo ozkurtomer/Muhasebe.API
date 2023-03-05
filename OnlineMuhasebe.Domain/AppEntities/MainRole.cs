@@ -9,6 +9,6 @@ public sealed class MainRole : Entity
     public string CompanyId { get; set; }
     public bool IsRoleCreatedByAdmin { get; set; }
 
-    [ForeignKey("Company")]
+    [ForeignKey("CompanyId")]
     public Company? Company { get; set; }
 }

@@ -8,10 +8,14 @@ public sealed class MainRoleUser : Entity
 {
     public string UserId { get; set; }
     public string MainRoleId { get; set; }
+    public string CompanyId { get; set; }
 
     [ForeignKey("User")]
     public AppUser AppUser { get; set; }
 
     [ForeignKey("MainRole")]
     public MainRole MainRole { get; set; }
+
+    [ForeignKey("Company")]
+    public Company Company { get; set; }
 }
