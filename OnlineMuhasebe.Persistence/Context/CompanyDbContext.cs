@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Design;
-using OnlineMuhasebe.Domain.Abstractions;
 using OnlineMuhasebe.Domain.AppEntities;
+using OnlineMuhasebe.Domain.Abstractions;
+using Microsoft.EntityFrameworkCore.Design;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
 
 namespace OnlineMuhasebe.Persistence.Context;
 
