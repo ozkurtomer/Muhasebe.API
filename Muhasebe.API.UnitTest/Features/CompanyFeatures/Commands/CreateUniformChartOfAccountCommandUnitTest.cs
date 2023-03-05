@@ -18,7 +18,7 @@ public sealed class CreateUniformChartOfAccountCommandUnitTest
     public async Task UniformChartOfAccountShouldBeNull()
     {
         UniformChartOfAccount uniformChartOfAccount = await UniformChartOfAccountService.Object.GetByCodeAsync("100.01.001");
-        uniformChartOfAccount.ShouldNotBeNull();
+        uniformChartOfAccount.ShouldBeNull();
     }
 
     [Fact]
