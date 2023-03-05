@@ -1,11 +1,11 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 using OnlineMuhasebe.Domain.AppEntities;
 using OnlineMuhasebe.Domain.Abstractions;
-using OnlineMuhasebe.Domain.AppEntities.Identities;
-using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
+using OnlineMuhasebe.Domain.AppEntities.Identities;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace OnlineMuhasebe.Persistence.Context;
 
@@ -17,6 +17,8 @@ public sealed class AppDbContext : IdentityDbContext<AppUser, AppRole, string>
 
     public DbSet<Company> Companies { get; set; }
     public DbSet<AppUserCompany> AppUserCompanies { get; set; }
+    public DbSet<MainRole> MainRoles { get; set; }
+    public DbSet<RoleMainRole> RoleMainRoles { get; set; }
 
     public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
     {

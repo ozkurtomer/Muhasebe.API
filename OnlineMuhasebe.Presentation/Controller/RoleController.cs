@@ -5,6 +5,7 @@ using OnlineMuhasebe.Application.Features.AppFeatures.RoleFeatures.Commands.Crea
 using OnlineMuhasebe.Application.Features.AppFeatures.RoleFeatures.Queries.GetAllRoles;
 using OnlineMuhasebe.Application.Features.AppFeatures.RoleFeatures.Commands.UpdateRole;
 using OnlineMuhasebe.Application.Features.AppFeatures.RoleFeatures.Commands.DeleteRole;
+using OnlineMuhasebe.Application.Features.AppFeatures.RoleFeatures.Commands.CreateAllRole;
 
 namespace OnlineMuhasebe.Presentation.Controller;
 
@@ -21,14 +22,6 @@ public class RoleController : ApiController
         return Ok(result);
     }
 
-    [HttpGet("[action]")]
-    public async Task<IActionResult> GetAllRoles()
-    {
-        var request = new GetAllRolesQuery();
-        var result = await Mediator.Send(request);
-        return Ok(result);
-    }
-
     [HttpPost("[action]")]
     public async Task<IActionResult> UpdateRole(UpdateRoleCommand updateRoleRequest)
     {
@@ -40,6 +33,22 @@ public class RoleController : ApiController
     public async Task<IActionResult> DeleteRole(DeleteRoleCommand deleteRoleRequest)
     {
         var result = await Mediator.Send(deleteRoleRequest);
+        return Ok(result);
+    }
+
+    [HttpGet("[action]")]
+    public async Task<IActionResult> GetAllRoles()
+    {
+        var request = new GetAllRolesQuery();
+        var result = await Mediator.Send(request);
+        return Ok(result);
+    }
+
+    [HttpGet("[action]")]
+    public async Task<IActionResult> CreateAllRoles()
+    {
+        var request = new CreateAllRoleCommand();
+        var result = await Mediator.Send(request);
         return Ok(result);
     }
 }

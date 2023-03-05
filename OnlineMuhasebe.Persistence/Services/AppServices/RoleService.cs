@@ -26,6 +26,14 @@ public sealed class RoleService : IRoleService
         await RoleManager.CreateAsync(role);
     }
 
+    public async Task AddRangeAsync(IEnumerable<AppRole> roleList)
+    {
+        foreach (var role in roleList)
+        {
+            await RoleManager.CreateAsync(role);
+        }
+    }
+
     public async Task UpdateAsync(AppRole role)
     {
         await RoleManager.UpdateAsync(role);
