@@ -1,9 +1,9 @@
-﻿using System.Linq.Expressions;
-using OnlineMuhasebe.Domain.Abstractions;
+﻿using OnlineMuhasebe.Domain.Abstractions;
+using System.Linq.Expressions;
 
-namespace OnlineMuhasebe.Domain.Repositories;
+namespace OnlineMuhasebe.Domain.Repositories.GenericRepositories;
 
-public interface IQueryRepository<TEntity> : IRepository<TEntity> where TEntity : Entity
+public interface IQueryGenericRepository<TEntity> where TEntity:Entity
 {
     IQueryable<TEntity> GetAll(bool isTracking = true);
     IQueryable<TEntity> GetWhere(Expression<Func<TEntity, bool>> expression, bool isTracking = true);

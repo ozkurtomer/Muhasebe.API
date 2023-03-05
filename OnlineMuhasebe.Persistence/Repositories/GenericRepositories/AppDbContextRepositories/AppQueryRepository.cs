@@ -1,36 +1,36 @@
 ﻿using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using OnlineMuhasebe.Domain.Abstractions;
-using OnlineMuhasebe.Domain.Repositories;
 using OnlineMuhasebe.Persistence.Context;
+using OnlineMuhasebe.Domain.Repositories.GenericRepositories.AppDbContextRepositories;
 
-namespace OnlineMuhasebe.Persistence.Repositories;
+namespace OnlineMuhasebe.Persistence.Repositories.GenericRepositories.AppDbContextRepositories;
 
-public class QueryRepository<TEntity> : IQueryRepository<TEntity> where TEntity : Entity
+public sealed class AppQueryRepository<TEntity> : IAppQueryRepository<TEntity> where TEntity : Entity
 {
-    private static readonly Func<CompanyDbContext, string, bool, Task<TEntity>> GetByIdComplied = EF.CompileAsyncQuery((CompanyDbContext context, string id, bool isTracking) =>
+    private static readonly Func<AppDbContext, string, bool, Task<TEntity>> GetByIdComplied = EF.CompileAsyncQuery((AppDbContext context, string id, bool isTracking) =>
         isTracking ? context.Set<TEntity>().FirstOrDefault(x => x.Id == id)
                    : context.Set<TEntity>().AsNoTracking().FirstOrDefault(x => x.Id == id)
     );
 
-    private static readonly Func<CompanyDbContext, bool, Task<TEntity>> GetFirstComplied = EF.CompileAsyncQuery((CompanyDbContext context, bool isTracking) =>
+    private static readonly Func<AppDbContext, bool, Task<TEntity>> GetFirstComplied = EF.CompileAsyncQuery((AppDbContext context, bool isTracking) =>
         isTracking ? context.Set<TEntity>().FirstOrDefault()
                    : context.Set<TEntity>().AsNoTracking().FirstOrDefault()
     );
 
-    private static readonly Func<CompanyDbContext, Expression<Func<TEntity, bool>>, bool, Task<TEntity>> GetFirstByExpressionComplied = EF.CompileAsyncQuery((CompanyDbContext context, Expression<Func<TEntity, bool>> expression, bool isTracking) =>
+    private static readonly Func<AppDbContext, Expression<Func<TEntity, bool>>, bool, Task<TEntity>> GetFirstByExpressionComplied = EF.CompileAsyncQuery((AppDbContext context, Expression<Func<TEntity, bool>> expression, bool isTracking) =>
         isTracking ? context.Set<TEntity>().FirstOrDefault(expression)
                    : context.Set<TEntity>().AsNoTracking().FirstOrDefault(expression)
     );
 
-    private CompanyDbContext DbContext;
-    public DbSet<TEntity> Entity { get; set; }
-
-    public void SetDbContextInstance(DbContext dbContext)
+    public AppQueryRepository(AppDbContext dbContext)
     {
-        DbContext = (CompanyDbContext)dbContext;
+        DbContext = dbContext;
         Entity = DbContext.Set<TEntity>();
     }
+
+    private AppDbContext DbContext;
+    public DbSet<TEntity> Entity { get; set; }
 
     public IQueryable<TEntity> GetAll(bool isTracking = true)
     {

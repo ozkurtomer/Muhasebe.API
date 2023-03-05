@@ -1,22 +1,22 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using OnlineMuhasebe.Domain.Abstractions;
-using OnlineMuhasebe.Domain.Repositories;
 using OnlineMuhasebe.Persistence.Context;
+using OnlineMuhasebe.Domain.Repositories.GenericRepositories.AppDbContextRepositories;
 
-namespace OnlineMuhasebe.Persistence.Repositories;
+namespace OnlineMuhasebe.Persistence.Repositories.GenericRepositories.AppDbContextRepositories;
 
-public class CommandRepository<TEntity> : ICommandRepository<TEntity> where TEntity : Entity
+public sealed class AppCommandRepository<TEntity> : IAppCommandRepository<TEntity> where TEntity : Entity
 {
-    private static readonly Func<CompanyDbContext, string, Task<TEntity>> GetByIdCompile = EF.CompileAsyncQuery((CompanyDbContext context, string id) =>
+    private static readonly Func<AppDbContext, string, Task<TEntity>> GetByIdCompile = EF.CompileAsyncQuery((AppDbContext context, string id) =>
         context.Set<TEntity>().FirstOrDefault(x => x.Id == id)
     );
 
-    private CompanyDbContext Context;
+    private readonly AppDbContext Context;
     public DbSet<TEntity> Entity { get; set; }
 
-    public void SetDbContextInstance(DbContext dbContext)
+    public AppCommandRepository(AppDbContext context)
     {
-        Context = (CompanyDbContext)dbContext;
+        Context = context;
         Entity = Context.Set<TEntity>();
     }
 
@@ -28,6 +28,16 @@ public class CommandRepository<TEntity> : ICommandRepository<TEntity> where TEnt
     public async Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken token)
     {
         await Entity.AddRangeAsync(entities, token);
+    }
+
+    public void Update(TEntity entity)
+    {
+        Entity.Update(entity);
+    }
+
+    public void UpdateRange(IEnumerable<TEntity> entities)
+    {
+        Entity.UpdateRange(entities);
     }
 
     public void Remove(TEntity entity)
@@ -44,15 +54,5 @@ public class CommandRepository<TEntity> : ICommandRepository<TEntity> where TEnt
     public void RemoveRange(IEnumerable<TEntity> entities)
     {
         Entity.RemoveRange(entities);
-    }
-
-    public void Update(TEntity entity)
-    {
-        Entity.Update(entity);
-    }
-
-    public void UpdateRange(IEnumerable<TEntity> entities)
-    {
-        Entity.UpdateRange(entities);
     }
 }

@@ -2,6 +2,6 @@
 
 namespace OnlineMuhasebe.Domain.Repositories.UniformChartOfAccountRepositories;
 
-public interface IUniformChartOfAccountQueryRepository : IQueryRepository<UniformChartOfAccount>
+public interface IUniformChartOfAccountQueryRepository : ICompanyQueryRepository<UniformChartOfAccount>
 {
 }

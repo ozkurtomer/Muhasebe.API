@@ -1,8 +1,7 @@
-﻿using OnlineMuhasebe.Domain.Abstractions;
+﻿
+namespace OnlineMuhasebe.Domain.Repositories.GenericRepositories;
 
-namespace OnlineMuhasebe.Domain.Repositories;
-
-public interface ICommandRepository<TEntity> : IRepository<TEntity> where TEntity : Entity
+public interface ICommandGenericRepository<TEntity>
 {
     Task AddAsync(TEntity entity, CancellationToken token);
     Task AddRangeAsync(IEnumerable<TEntity> entities, CancellationToken token);
@@ -14,4 +13,3 @@ public interface ICommandRepository<TEntity> : IRepository<TEntity> where TEntit
     void Remove(TEntity entity);
     void RemoveRange(IEnumerable<TEntity> entities);
 }
-
