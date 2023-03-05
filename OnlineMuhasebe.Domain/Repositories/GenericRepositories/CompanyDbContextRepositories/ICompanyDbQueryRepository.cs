@@ -3,6 +3,6 @@ using OnlineMuhasebe.Domain.Repositories.GenericRepositories;
 
 namespace OnlineMuhasebe.Domain.Repositories;
 
-public interface ICompanyQueryRepository<TEntity> : IQueryGenericRepository<TEntity>, ICompanyRepository<TEntity> where TEntity : Entity
+public interface ICompanyDbQueryRepository<TEntity> : IQueryGenericRepository<TEntity>, ICompanyDbRepository<TEntity> where TEntity : Entity
 {
 }

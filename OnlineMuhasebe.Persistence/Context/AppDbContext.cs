@@ -20,7 +20,7 @@ public sealed class AppDbContext : IdentityDbContext<AppUser, AppRole, string>
     public DbSet<MainRole> MainRoles { get; set; }
     public DbSet<RoleMainRole> RoleMainRoles { get; set; }
 
-    public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = default)
+    public override Task<int> SaveChangesAsync(CancellationToken cancellationToken = default)
     {
         var entries = ChangeTracker.Entries<Entity>();
 
@@ -36,7 +36,7 @@ public sealed class AppDbContext : IdentityDbContext<AppUser, AppRole, string>
                 entry.Property(x => x.UpdatedDate).CurrentValue = DateTime.Now;
             }
         }
-        return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);
+        return base.SaveChangesAsync(cancellationToken);
     }
 
     protected override void OnModelCreating(ModelBuilder builder)

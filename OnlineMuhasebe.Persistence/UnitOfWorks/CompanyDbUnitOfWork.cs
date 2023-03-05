@@ -1,10 +1,10 @@
-﻿using OnlineMuhasebe.Domain;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using OnlineMuhasebe.Persistence.Context;
+using OnlineMuhasebe.Domain.UnitOfWorks;
 
-namespace OnlineMuhasebe.Persistence;
+namespace OnlineMuhasebe.Persistence.UnitOfWorks;
 
-public sealed class UnitOfWork : IUnitOfWork
+public sealed class CompanyDbUnitOfWork : ICompanyDbUnitOfWork
 {
     private CompanyDbContext DbContext;
 

@@ -1,9 +1,0 @@
-﻿using OnlineMuhasebe.Domain.CompanyEntities;
-using OnlineMuhasebe.Domain.Repositories.UniformChartOfAccountRepositories;
-using OnlineMuhasebe.Persistence.Repositories.GenericRepositories.CompanyDbContextRepositories;
-
-namespace OnlineMuhasebe.Persistence.Repositories.UniformCharOfAccountRepositories;
-
-public class UniformChartOfAccountQueryRepository : CompanyQueryRepository<UniformChartOfAccount>, IUniformChartOfAccountQueryRepository
-{
-}

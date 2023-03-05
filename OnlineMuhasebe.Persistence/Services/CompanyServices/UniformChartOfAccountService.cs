@@ -3,8 +3,9 @@ using OnlineMuhasebe.Domain;
 using OnlineMuhasebe.Persistence.Context;
 using OnlineMuhasebe.Domain.CompanyEntities;
 using OnlineMuhasebe.Application.Services.CompanyServices;
-using OnlineMuhasebe.Domain.Repositories.UniformChartOfAccountRepositories;
 using OnlineMuhasebe.Application.Features.CompanyFeatures.UniformChartOfAccountFeatures.Commands.CreateUniformChartOfAccount;
+using OnlineMuhasebe.Domain.Repositories.CompanyDbContextRepositories.UniformChartOfAccountRepositories;
+using OnlineMuhasebe.Domain.UnitOfWorks;
 
 namespace OnlineMuhasebe.Persistence.Services.CompanyServices;
 
@@ -14,10 +15,10 @@ public sealed class UniformChartOfAccountService : IUniformChartOfAccountService
     private readonly IUniformChartOfAccountQueryRepository UniformChartOfAccountQueryRepository;
     private readonly IContextService ContextService;
     private CompanyDbContext Context;
-    private readonly IUnitOfWork UnitOfWork;
+    private readonly ICompanyDbUnitOfWork UnitOfWork;
     private readonly IMapper Mapper;
 
-    public UniformChartOfAccountService(IUniformChartOfAccountCommandRepository uniformChartOfAccountCommandRepository, IContextService contextService, IUnitOfWork unitOfWork, IMapper mapper, IUniformChartOfAccountQueryRepository uniformChartOfAccountQueryRepository)
+    public UniformChartOfAccountService(IUniformChartOfAccountCommandRepository uniformChartOfAccountCommandRepository, IContextService contextService, ICompanyDbUnitOfWork unitOfWork, IMapper mapper, IUniformChartOfAccountQueryRepository uniformChartOfAccountQueryRepository)
     {
         UniformChartOfAccountCommandRepository = uniformChartOfAccountCommandRepository;
         ContextService = contextService;

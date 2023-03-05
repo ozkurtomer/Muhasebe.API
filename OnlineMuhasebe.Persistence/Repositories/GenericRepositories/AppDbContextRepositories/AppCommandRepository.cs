@@ -5,7 +5,7 @@ using OnlineMuhasebe.Domain.Repositories.GenericRepositories.AppDbContextReposit
 
 namespace OnlineMuhasebe.Persistence.Repositories.GenericRepositories.AppDbContextRepositories;
 
-public sealed class AppCommandRepository<TEntity> : IAppCommandRepository<TEntity> where TEntity : Entity
+public class AppCommandRepository<TEntity> : IAppCommandRepository<TEntity> where TEntity : Entity
 {
     private static readonly Func<AppDbContext, string, Task<TEntity>> GetByIdCompile = EF.CompileAsyncQuery((AppDbContext context, string id) =>
         context.Set<TEntity>().FirstOrDefault(x => x.Id == id)

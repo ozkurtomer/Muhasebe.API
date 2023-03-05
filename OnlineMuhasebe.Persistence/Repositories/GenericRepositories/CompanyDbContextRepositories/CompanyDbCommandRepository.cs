@@ -5,7 +5,7 @@ using OnlineMuhasebe.Domain.Repositories.GenericRepositories.CompanyDbContextRep
 
 namespace OnlineMuhasebe.Persistence.Repositories.GenericRepositories.CompanyDbContextRepositories;
 
-public class CompanyCommandRepository<TEntity> : ICompanyCommandRepository<TEntity> where TEntity : Entity
+public class CompanyDbCommandRepository<TEntity> : ICompanyDbCommandRepository<TEntity> where TEntity : Entity
 {
     private static readonly Func<CompanyDbContext, string, Task<TEntity>> GetByIdCompile = EF.CompileAsyncQuery((CompanyDbContext context, string id) =>
         context.Set<TEntity>().FirstOrDefault(x => x.Id == id)

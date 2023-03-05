@@ -6,7 +6,7 @@ using OnlineMuhasebe.Persistence.Context;
 
 namespace OnlineMuhasebe.Persistence.Repositories.GenericRepositories.CompanyDbContextRepositories;
 
-public class CompanyQueryRepository<TEntity> : ICompanyQueryRepository<TEntity> where TEntity : Entity
+public class CompanyDbQueryRepository<TEntity> : ICompanyDbQueryRepository<TEntity> where TEntity : Entity
 {
     private static readonly Func<CompanyDbContext, string, bool, Task<TEntity>> GetByIdComplied = EF.CompileAsyncQuery((CompanyDbContext context, string id, bool isTracking) =>
         isTracking ? context.Set<TEntity>().FirstOrDefault(x => x.Id == id)

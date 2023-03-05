@@ -1,11 +1,15 @@
 ﻿using OnlineMuhasebe.Domain;
 using OnlineMuhasebe.Persistence;
+using OnlineMuhasebe.Domain.UnitOfWorks;
+using OnlineMuhasebe.Persistence.UnitOfWorks;
 using OnlineMuhasebe.Application.Services.AppServices;
 using OnlineMuhasebe.Persistence.Services.AppServices;
 using OnlineMuhasebe.Application.Services.CompanyServices;
 using OnlineMuhasebe.Persistence.Services.CompanyServices;
-using OnlineMuhasebe.Domain.Repositories.UniformChartOfAccountRepositories;
-using OnlineMuhasebe.Persistence.Repositories.UniformCharOfAccountRepositories;
+using OnlineMuhasebe.Domain.Repositories.AppDbContextRepositories.CompanyRepositories;
+using OnlineMuhasebe.Persistence.Repositories.AppDbContextRepositories.CompanyRepositories;
+using OnlineMuhasebe.Domain.Repositories.CompanyDbContextRepositories.UniformChartOfAccountRepositories;
+using OnlineMuhasebe.Persistence.Repositories.CompanyDbContextRepositories.UniformCharOfAccountRepositories;
 
 namespace OnlineMuhasebe.WebAPI.Configurations;
 
@@ -14,20 +18,33 @@ public class PersistanceDependencyInjectionServiceInstaller : IServiceInstaller
     public void Install(IServiceCollection serviceDescriptors, IConfiguration configuration)
     {
         #region UOF
-        serviceDescriptors.AddScoped<IUnitOfWork, UnitOfWork>();
+        serviceDescriptors.AddScoped<ICompanyDbUnitOfWork, CompanyDbUnitOfWork>();
+        serviceDescriptors.AddScoped<IAppUnitOfWork, AppUnitOfWork>();
         serviceDescriptors.AddScoped<IContextService, ContextService>();
         #endregion
 
         #region Services
-        serviceDescriptors.AddScoped<ICompanyService, CompanyService>();
+        #region CompanyDbContext
         serviceDescriptors.AddScoped<IUniformChartOfAccountService, UniformChartOfAccountService>();
-        serviceDescriptors.AddScoped<IRoleService, RoleService>();
+        #endregion
 
+        #region AppDbContext
+        serviceDescriptors.AddScoped<ICompanyService, CompanyService>();
+        serviceDescriptors.AddScoped<IRoleService, RoleService>();
+        #endregion
         #endregion
 
         #region Repositories
+        #region CompanyDbContext
         serviceDescriptors.AddScoped<IUniformChartOfAccountCommandRepository, UniformChartOfAccountCommandRepository>();
         serviceDescriptors.AddScoped<IUniformChartOfAccountQueryRepository, UniformChartOfAccountQueryRepository>();
+        #endregion
+
+
+        #region AppDbContext
+        serviceDescriptors.AddScoped<ICompanyCommandRepository, CompanyCommandRepository>();
+        serviceDescriptors.AddScoped<ICompanyQueryRepository, CompanyQueryRepository>();
+        #endregion
         #endregion
     }
 }
