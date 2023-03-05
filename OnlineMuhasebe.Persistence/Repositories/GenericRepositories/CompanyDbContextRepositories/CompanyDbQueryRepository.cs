@@ -18,11 +18,6 @@ public class CompanyDbQueryRepository<TEntity> : ICompanyDbQueryRepository<TEnti
                    : context.Set<TEntity>().AsNoTracking().FirstOrDefault()
     );
 
-    private static readonly Func<CompanyDbContext, Expression<Func<TEntity, bool>>, bool, Task<TEntity>> GetFirstByExpressionComplied = EF.CompileAsyncQuery((CompanyDbContext context, Expression<Func<TEntity, bool>> expression, bool isTracking) =>
-        isTracking ? context.Set<TEntity>().FirstOrDefault(expression)
-                   : context.Set<TEntity>().AsNoTracking().FirstOrDefault(expression)
-    );
-
     private CompanyDbContext DbContext;
     public DbSet<TEntity> Entity { get; set; }
 
@@ -54,7 +49,13 @@ public class CompanyDbQueryRepository<TEntity> : ICompanyDbQueryRepository<TEnti
 
     public async Task<TEntity> GetFirstByExpression(Expression<Func<TEntity, bool>> expression, bool isTracking = true)
     {
-        return await GetFirstByExpressionComplied(DbContext, expression, isTracking);
+        TEntity entity = null;
+        if (!isTracking)
+            entity = await Entity.AsNoTracking().FirstOrDefaultAsync(expression);
+        else
+            entity = await Entity.FirstOrDefaultAsync(expression);
+
+        return entity;
     }
 
     public IQueryable<TEntity> GetWhere(Expression<Func<TEntity, bool>> expression, bool isTracking = true)
