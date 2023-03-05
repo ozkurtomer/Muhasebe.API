@@ -5,4 +5,5 @@ namespace OnlineMuhasebe.Domain.AppEntities.Identities;
 public sealed class AppRole : IdentityRole<string>
 {
     public string Code { get; set; }
+    public string Title { get; set; }
 }
