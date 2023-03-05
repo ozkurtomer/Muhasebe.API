@@ -4,4 +4,4 @@ namespace OnlineMuhasebe.Application.Features.AppFeatures.RoleFeatures.Commands.
 
 public sealed record CreateRoleCommand(
     string Code,
-    string Name) : ICommand<CreateRoleCompanyResponse>;
+    string Name) : ICommand<CreateRoleCommandResponse>;

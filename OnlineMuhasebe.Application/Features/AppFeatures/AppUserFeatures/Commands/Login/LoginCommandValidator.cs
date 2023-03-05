@@ -1,15 +1,15 @@
 ﻿using FluentValidation;
 
-namespace OnlineMuhasebe.Application.Features.AppFeatures.AppUserFeatures.Login;
+namespace OnlineMuhasebe.Application.Features.AppFeatures.AppUserFeatures.Commands.Login;
 
 public sealed class LoginCommandValidator : AbstractValidator<LoginCommand>
 {
-	public LoginCommandValidator()
-	{
-		RuleFor(x => x.EmailOrUserName).NotEmpty().WithMessage("Mail veya Kullanıcı Adı zorunludur!");
-		RuleFor(x => x.EmailOrUserName).NotNull().WithMessage("Mail veya Kullanıcı Adı zorunludur!");
+    public LoginCommandValidator()
+    {
+        RuleFor(x => x.EmailOrUserName).NotEmpty().WithMessage("Mail veya Kullanıcı Adı zorunludur!");
+        RuleFor(x => x.EmailOrUserName).NotNull().WithMessage("Mail veya Kullanıcı Adı zorunludur!");
 
-		RuleFor(x => x.Password).NotEmpty().WithMessage("Şifre alanı boş geçilemez!");
+        RuleFor(x => x.Password).NotEmpty().WithMessage("Şifre alanı boş geçilemez!");
         RuleFor(p => p.Password).NotNull().WithMessage("Şifre alanı boş geçilemez!");
         RuleFor(p => p.Password).NotEmpty().WithMessage("Şifre alanı boş geçilemez!");
         RuleFor(p => p.Password).MinimumLength(6).WithMessage("Şifre en az 6 karakter olmalıdır!");

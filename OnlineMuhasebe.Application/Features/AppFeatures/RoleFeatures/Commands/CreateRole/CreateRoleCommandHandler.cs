@@ -3,7 +3,7 @@ using OnlineMuhasebe.Application.Services.AppServices;
 
 namespace OnlineMuhasebe.Application.Features.AppFeatures.RoleFeatures.Commands.CreateRole;
 
-public class CreateRoleCommandHandler : ICommandHandler<CreateRoleCommand, CreateRoleCompanyResponse>
+public class CreateRoleCommandHandler : ICommandHandler<CreateRoleCommand, CreateRoleCommandResponse>
 {
     private readonly IRoleService RoleService;
 
@@ -12,7 +12,7 @@ public class CreateRoleCommandHandler : ICommandHandler<CreateRoleCommand, Creat
         RoleService = roleService;
     }
 
-    public async Task<CreateRoleCompanyResponse> Handle(CreateRoleCommand request, CancellationToken cancellationToken)
+    public async Task<CreateRoleCommandResponse> Handle(CreateRoleCommand request, CancellationToken cancellationToken)
     {
         var role = await RoleService.GetByCodeRoleAsync(request.Code);
         if (role != null) throw new Exception("Rol daha önce kayıt edilmiştir!");

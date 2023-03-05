@@ -9,19 +9,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{7350F559-2
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "External", "External", "{2AACA8AC-09B7-49E5-8595-E2B56F4B7B99}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineMuhasebe.Application", "OnlineMuhasebe.Application\OnlineMuhasebe.Application.csproj", "{929861AC-D615-48FE-916D-F1C833139ACE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineMuhasebe.Application", "OnlineMuhasebe.Application\OnlineMuhasebe.Application.csproj", "{929861AC-D615-48FE-916D-F1C833139ACE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineMuhasebe.Domain", "OnlineMuhasebe.Domain\OnlineMuhasebe.Domain.csproj", "{37B5D900-80B0-4EB2-A774-A74D22EEE628}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineMuhasebe.Domain", "OnlineMuhasebe.Domain\OnlineMuhasebe.Domain.csproj", "{37B5D900-80B0-4EB2-A774-A74D22EEE628}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineMuhasebe.Infrasturcture", "OnlineMuhasebe.Infrasturcture\OnlineMuhasebe.Infrasturcture.csproj", "{47827DE3-8EDA-4820-A58D-203E08CC43A7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineMuhasebe.Infrasturcture", "OnlineMuhasebe.Infrasturcture\OnlineMuhasebe.Infrasturcture.csproj", "{47827DE3-8EDA-4820-A58D-203E08CC43A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineMuhasebe.Persistence", "OnlineMuhasebe.Persistence\OnlineMuhasebe.Persistence.csproj", "{43851FC4-6B4B-49E9-BCCB-0C9A3D338D21}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineMuhasebe.Persistence", "OnlineMuhasebe.Persistence\OnlineMuhasebe.Persistence.csproj", "{43851FC4-6B4B-49E9-BCCB-0C9A3D338D21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineMuhasebe.Presentation", "OnlineMuhasebe.Presentation\OnlineMuhasebe.Presentation.csproj", "{C9D26F10-376D-4184-AE64-CEEB9109D117}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineMuhasebe.Presentation", "OnlineMuhasebe.Presentation\OnlineMuhasebe.Presentation.csproj", "{C9D26F10-376D-4184-AE64-CEEB9109D117}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlineMuhasebe.WebAPI", "OnlineMuhasebe.WebAPI\OnlineMuhasebe.WebAPI.csproj", "{DBD1953A-61F3-4CE6-9022-0898D33127F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OnlineMuhasebe.WebAPI", "OnlineMuhasebe.WebAPI\OnlineMuhasebe.WebAPI.csproj", "{DBD1953A-61F3-4CE6-9022-0898D33127F1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{145C4227-50EC-4A0B-9BA0-7D2BB8D259F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Muhasebe.API.UnitTest", "Muhasebe.API.UnitTest\Muhasebe.API.UnitTest.csproj", "{8C963BA2-4B5C-42AF-B99B-FB54C1591903}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -53,6 +55,10 @@ Global
 		{DBD1953A-61F3-4CE6-9022-0898D33127F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DBD1953A-61F3-4CE6-9022-0898D33127F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DBD1953A-61F3-4CE6-9022-0898D33127F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8C963BA2-4B5C-42AF-B99B-FB54C1591903}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8C963BA2-4B5C-42AF-B99B-FB54C1591903}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8C963BA2-4B5C-42AF-B99B-FB54C1591903}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8C963BA2-4B5C-42AF-B99B-FB54C1591903}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +72,7 @@ Global
 		{43851FC4-6B4B-49E9-BCCB-0C9A3D338D21} = {2AACA8AC-09B7-49E5-8595-E2B56F4B7B99}
 		{C9D26F10-376D-4184-AE64-CEEB9109D117} = {2AACA8AC-09B7-49E5-8595-E2B56F4B7B99}
 		{DBD1953A-61F3-4CE6-9022-0898D33127F1} = {8CF68068-B824-42B3-8752-9D2364F9819F}
+		{8C963BA2-4B5C-42AF-B99B-FB54C1591903} = {145C4227-50EC-4A0B-9BA0-7D2BB8D259F6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CD37B27A-9EF4-4813-A4B4-949E76121011}

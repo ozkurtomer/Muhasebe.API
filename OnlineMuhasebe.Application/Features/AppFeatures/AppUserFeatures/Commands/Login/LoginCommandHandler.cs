@@ -5,9 +5,9 @@ using OnlineMuhasebe.Application.Abstractions;
 using OnlineMuhasebe.Application.Messaging;
 using OnlineMuhasebe.Domain.AppEntities.Identities;
 
-namespace OnlineMuhasebe.Application.Features.AppFeatures.AppUserFeatures.Login;
+namespace OnlineMuhasebe.Application.Features.AppFeatures.AppUserFeatures.Commands.Login;
 
-public class LoginCommandHandler : ICommandHandler<LoginCommand,LoginCommandResponse>
+public class LoginCommandHandler : ICommandHandler<LoginCommand, LoginCommandResponse>
 {
     private readonly IJwtProvider JwtProvider;
     private readonly UserManager<AppUser> UserManager;
