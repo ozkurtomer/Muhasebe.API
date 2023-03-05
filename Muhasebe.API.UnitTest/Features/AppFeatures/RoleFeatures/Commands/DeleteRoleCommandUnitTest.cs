@@ -18,7 +18,7 @@ public sealed class DeleteRoleCommandUnitTest
     [Fact]
     public async Task AppRoleShouldNotBeNull()
     {
-        _ = RoleService.Setup(x => x.GetById(It.IsAny<string>())).ReturnsAsync(new AppRole());
+        _ = RoleService.Setup(x => x.GetByIdRoleAsync(It.IsAny<string>())).ReturnsAsync(new AppRole());
     }
 
     [Fact]
