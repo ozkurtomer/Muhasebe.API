@@ -5,16 +5,16 @@ using OnlineMuhasebe.Application.Features.AppFeatures.MainRoleFeatures.Commands.
 
 namespace OnlineMuhasebe.Application.Features.AppFeatures.MainRoleFeatures.Commands.CreateMainRole;
 
-public sealed class CreateMainRoleHandler : ICommandHandler<CreateMainRoleCommand, CreateMainRoleResponse>
+public sealed class CreateMainRoleCommandHandler : ICommandHandler<CreateMainRoleCommand, CreateMainRoleCommandResponse>
 {
     private readonly IMainRoleService MainRoleService;
 
-    public CreateMainRoleHandler(IMainRoleService mainRoleService)
+    public CreateMainRoleCommandHandler(IMainRoleService mainRoleService)
     {
         MainRoleService = mainRoleService;
     }
 
-    public async Task<CreateMainRoleResponse> Handle(CreateMainRoleCommand request, CancellationToken cancellationToken)
+    public async Task<CreateMainRoleCommandResponse> Handle(CreateMainRoleCommand request, CancellationToken cancellationToken)
     {
         MainRole checkMainRole = await MainRoleService.GetByTitleAndCompanyId(request.Title, request.CompanyId, cancellationToken);
         if (checkMainRole != null) throw new Exception("Bu rol daha önce eklenmiştir!");

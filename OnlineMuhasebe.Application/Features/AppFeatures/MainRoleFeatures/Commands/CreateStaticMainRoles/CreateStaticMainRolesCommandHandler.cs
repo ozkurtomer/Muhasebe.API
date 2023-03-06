@@ -5,10 +5,10 @@ using OnlineMuhasebe.Application.Services.AppServices;
 
 namespace OnlineMuhasebe.Application.Features.AppFeatures.MainRoleFeatures.Commands.CreateStaticMainRoles;
 
-public sealed class CreateStaticMainRolesHandler : ICommandHandler<CreateStaticMainRolesCommand, CreateStaticMainRolesResponse>
+public sealed class CreateStaticMainRolesCommandHandler : ICommandHandler<CreateStaticMainRolesCommand, CreateStaticMainRolesCommandResponse>
 {
     private readonly IMainRoleService MainRoleService;
-    public async Task<CreateStaticMainRolesResponse> Handle(CreateStaticMainRolesCommand request, CancellationToken cancellationToken)
+    public async Task<CreateStaticMainRolesCommandResponse> Handle(CreateStaticMainRolesCommand request, CancellationToken cancellationToken)
     {
         List<MainRole> mainRoles = RoleList.GetStaticMainRoles();
         List<MainRole> createMainRoles = new List<MainRole>();
