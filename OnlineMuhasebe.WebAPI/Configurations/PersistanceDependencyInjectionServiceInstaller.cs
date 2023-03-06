@@ -7,7 +7,9 @@ using OnlineMuhasebe.Persistence.Services.AppServices;
 using OnlineMuhasebe.Application.Services.CompanyServices;
 using OnlineMuhasebe.Persistence.Services.CompanyServices;
 using OnlineMuhasebe.Domain.Repositories.AppDbContextRepositories.CompanyRepositories;
+using OnlineMuhasebe.Domain.Repositories.AppDbContextRepositories.MainRoleRepositories;
 using OnlineMuhasebe.Persistence.Repositories.AppDbContextRepositories.CompanyRepositories;
+using OnlineMuhasebe.Persistence.Repositories.AppDbContextRepositories.MainRoleRepositories;
 using OnlineMuhasebe.Domain.Repositories.CompanyDbContextRepositories.UniformChartOfAccountRepositories;
 using OnlineMuhasebe.Persistence.Repositories.CompanyDbContextRepositories.UniformCharOfAccountRepositories;
 
@@ -31,6 +33,7 @@ public class PersistanceDependencyInjectionServiceInstaller : IServiceInstaller
         #region AppDbContext
         serviceDescriptors.AddScoped<ICompanyService, CompanyService>();
         serviceDescriptors.AddScoped<IRoleService, RoleService>();
+        serviceDescriptors.AddScoped<IMainRoleService, MainRoleService>();
         #endregion
         #endregion
 
@@ -44,6 +47,8 @@ public class PersistanceDependencyInjectionServiceInstaller : IServiceInstaller
         #region AppDbContext
         serviceDescriptors.AddScoped<ICompanyCommandRepository, CompanyCommandRepository>();
         serviceDescriptors.AddScoped<ICompanyQueryRepository, CompanyQueryRepository>();
+        serviceDescriptors.AddScoped<IMainRoleCommandRepository, MainRoleCommandRepository>();
+        serviceDescriptors.AddScoped<IMainRoleQueryRepository, MainRoleQueryRepository>();
         #endregion
         #endregion
     }
