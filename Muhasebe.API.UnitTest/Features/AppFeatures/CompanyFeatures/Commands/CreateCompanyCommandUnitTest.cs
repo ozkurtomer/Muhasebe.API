@@ -18,7 +18,7 @@ public sealed class CreateCompanyCommandUnitTest
     [Fact]
     public async Task CompanyShouldBeNull()
     {
-        Company company = (await CompanyService.Object.GetCompanyByName("Özkurt Ltd. Şti."))!;
+        Company company = (await CompanyService.Object.GetCompanyByName("Özkurt Ltd. Şti.", default))!;
         company.ShouldBeNull();
     }
 

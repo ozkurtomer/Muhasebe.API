@@ -33,9 +33,9 @@ public sealed class CompanyService : ICompanyService
         await AppUnitOfWork.SaveChangesAsync(token);
     }
 
-    public async Task<Company?> GetCompanyByName(string companyName)
+    public async Task<Company?> GetCompanyByName(string companyName, CancellationToken token)
     {
-        return await CompanyQueryRepository.GetFirstByExpression(x => x.CompanyName == companyName, default);
+        return await CompanyQueryRepository.GetFirstByExpression(x => x.CompanyName == companyName, token, false);
     }
 
     public async Task MigrateCompanyDbs(MigrateCompanyDbCommand migrateCompanyDbRequest)
