@@ -12,7 +12,7 @@ public sealed class AppUnitOfWork : IAppUnitOfWork
         Context = context;
     }
 
-    public async Task<int> SaveChangesAsync(CancellationToken token)
+    public async Task<int> SaveChangesAsync(CancellationToken token = default)
     {
         return await Context.SaveChangesAsync(token);
     }

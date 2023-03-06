@@ -20,7 +20,7 @@ public class AppCommandRepository<TEntity> : IAppCommandRepository<TEntity> wher
         Entity = Context.Set<TEntity>();
     }
 
-    public async Task AddAsync(TEntity entity, CancellationToken token)
+    public async Task AddAsync(TEntity entity, CancellationToken token = default)
     {
         await Entity.AddAsync(entity, token);
     }

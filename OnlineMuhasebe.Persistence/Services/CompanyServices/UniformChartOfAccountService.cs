@@ -42,6 +42,6 @@ public sealed class UniformChartOfAccountService : IUniformChartOfAccountService
 
     public async Task<UniformChartOfAccount> GetByCodeAsync(string code)
     {
-        return await UniformChartOfAccountQueryRepository.GetFirstByExpression(x => x.Code == code);
+        return await UniformChartOfAccountQueryRepository.GetFirstByExpression(x => x.Code == code, default);
     }
 }

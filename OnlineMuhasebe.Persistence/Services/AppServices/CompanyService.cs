@@ -35,7 +35,7 @@ public sealed class CompanyService : ICompanyService
 
     public async Task<Company?> GetCompanyByName(string companyName)
     {
-        return await CompanyQueryRepository.GetFirstByExpression(x => x.CompanyName == companyName);
+        return await CompanyQueryRepository.GetFirstByExpression(x => x.CompanyName == companyName, default);
     }
 
     public async Task MigrateCompanyDbs(MigrateCompanyDbCommand migrateCompanyDbRequest)

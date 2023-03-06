@@ -13,7 +13,7 @@ public sealed class CompanyDbUnitOfWork : ICompanyDbUnitOfWork
         DbContext = (CompanyDbContext)dbContext;
     }
 
-    public async Task<int> SaveChangesAsync(CancellationToken token)
+    public async Task<int> SaveChangesAsync(CancellationToken token = default)
     {
         return await DbContext.SaveChangesAsync(token);
     }

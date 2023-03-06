@@ -47,11 +47,11 @@ public class AppQueryRepository<TEntity> : IAppQueryRepository<TEntity> where TE
         return await GetFirstComplied(DbContext, isTracking);
     }
 
-    public async Task<TEntity> GetFirstByExpression(Expression<Func<TEntity, bool>> expression, bool isTracking = true)
+    public async Task<TEntity> GetFirstByExpression(Expression<Func<TEntity, bool>> expression, CancellationToken cancellationToken, bool isTracking = true)
     {
         TEntity entity = null;
         if (!isTracking)
-            entity = await Entity.AsNoTracking().FirstOrDefaultAsync(expression);
+            entity = await Entity.AsNoTracking().FirstOrDefaultAsync(expression, cancellationToken);
         else
             entity = await Entity.FirstOrDefaultAsync(expression);
 

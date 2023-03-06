@@ -1,4 +1,5 @@
-﻿using OnlineMuhasebe.Domain.AppEntities.Identities;
+﻿using OnlineMuhasebe.Domain.AppEntities;
+using OnlineMuhasebe.Domain.AppEntities.Identities;
 
 namespace OnlineMuhasebe.Domain.Roles;
 
@@ -16,6 +17,17 @@ public sealed class RoleList
         };
 
         return roles;
+    }
+
+    public static List<MainRole> GetStaticMainRoles()
+    {
+        List<MainRole> mainRoles = new List<MainRole>
+        {
+            new MainRole(Guid.NewGuid().ToString(),"Admin",null,true),
+            new MainRole(Guid.NewGuid().ToString(),"Yönetici",null,true),
+            new MainRole(Guid.NewGuid().ToString(),"Kullanıcı",null,true)
+        };
+        return mainRoles;
     }
 
     #region RoleTitleNames
