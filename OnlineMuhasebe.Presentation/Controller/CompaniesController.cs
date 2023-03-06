@@ -1,6 +1,7 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using OnlineMuhasebe.Presentation.Abstraction;
+using OnlineMuhasebe.Application.Features.AppFeatures.CompanyFeatures.Queries.GetAllCompany;
 using OnlineMuhasebe.Application.Features.AppFeatures.CompanyFeatures.Commands.CreateCompany;
 using OnlineMuhasebe.Application.Features.AppFeatures.CompanyFeatures.Commands.MigrateCompanyDb;
 
@@ -24,6 +25,14 @@ public class CompaniesController : ApiController
     {
         MigrateCompanyDbCommand migrateCompanyDbRequest = new();
         var result = await Mediator.Send(migrateCompanyDbRequest);
+        return Ok(result);
+    }
+
+    [HttpGet("[action]")]
+    public async Task<IActionResult> GetAllCompany()
+    {
+        var command = new GetAllCompanyQuery();
+        var result = await Mediator.Send(command);
         return Ok(result);
     }
 }

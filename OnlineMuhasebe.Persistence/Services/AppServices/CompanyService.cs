@@ -33,6 +33,11 @@ public sealed class CompanyService : ICompanyService
         await AppUnitOfWork.SaveChangesAsync(token);
     }
 
+    public IQueryable<Company> GetAll()
+    {
+        return CompanyQueryRepository.GetAll();
+    }
+
     public async Task<Company?> GetCompanyByName(string companyName, CancellationToken token)
     {
         return await CompanyQueryRepository.GetFirstByExpression(x => x.CompanyName == companyName, token, false);

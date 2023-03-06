@@ -9,4 +9,5 @@ public interface ICompanyService
     Task<Company?> GetCompanyByName(string companyName, CancellationToken token);
     Task MigrateCompanyDbs(MigrateCompanyDbCommand migrateCompanyDbRequest);
     Task CreateCompany(CreateCompanyCommand createCompanyRequest, CancellationToken token);
+    IQueryable<Company> GetAll();
 }

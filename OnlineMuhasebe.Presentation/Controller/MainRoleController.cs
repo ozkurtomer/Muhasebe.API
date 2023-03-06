@@ -21,9 +21,10 @@ public sealed class MainRoleController : ApiController
     }
 
     [HttpPost("[action]")]
-    public async Task<IActionResult> CreateStaticMainRole(CreateStaticMainRolesCommand createStaticMainRolesCommand, CancellationToken cancellationToken)
+    public async Task<IActionResult> CreateStaticMainRole(CancellationToken cancellationToken)
     {
-        var result = await Mediator.Send(createStaticMainRolesCommand, cancellationToken);
+        var command = new CreateStaticMainRolesCommand(null);
+        var result = await Mediator.Send(command, cancellationToken);
         return Ok(result);
     }
 
