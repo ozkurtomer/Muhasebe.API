@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using OnlineMuhasebe.Presentation.Abstraction;
 using OnlineMuhasebe.Application.Features.AppFeatures.MainRoleFeatures.Commands.CreateRole;
+using OnlineMuhasebe.Application.Features.AppFeatures.MainRoleFeatures.Queries.GetAllMainRole;
 using OnlineMuhasebe.Application.Features.AppFeatures.MainRoleFeatures.Commands.CreateStaticMainRoles;
 
 namespace OnlineMuhasebe.Presentation.Controller;
@@ -23,6 +24,14 @@ public sealed class MainRoleController : ApiController
     public async Task<IActionResult> CreateStaticMainRole(CreateStaticMainRolesCommand createStaticMainRolesCommand, CancellationToken cancellationToken)
     {
         var result = await Mediator.Send(createStaticMainRolesCommand, cancellationToken);
+        return Ok(result);
+    }
+
+    [HttpGet("[action]")]
+    public async Task<IActionResult> GetAllMainRoles()
+    {
+        var command = new GetAllMainRoleQuery();
+        var result = await Mediator.Send(command);
         return Ok(result);
     }
 }

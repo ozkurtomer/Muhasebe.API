@@ -8,6 +8,12 @@ namespace OnlineMuhasebe.Application.Features.AppFeatures.MainRoleFeatures.Comma
 public sealed class CreateStaticMainRolesCommandHandler : ICommandHandler<CreateStaticMainRolesCommand, CreateStaticMainRolesCommandResponse>
 {
     private readonly IMainRoleService MainRoleService;
+
+    public CreateStaticMainRolesCommandHandler(IMainRoleService mainRoleService)
+    {
+        MainRoleService = mainRoleService;
+    }
+
     public async Task<CreateStaticMainRolesCommandResponse> Handle(CreateStaticMainRolesCommand request, CancellationToken cancellationToken)
     {
         List<MainRole> mainRoles = RoleList.GetStaticMainRoles();

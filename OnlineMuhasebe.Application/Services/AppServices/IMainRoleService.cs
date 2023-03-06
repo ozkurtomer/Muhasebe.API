@@ -7,4 +7,6 @@ public interface IMainRoleService
     Task<MainRole> GetByTitleAndCompanyId(string title, string companyId, CancellationToken cancellationToken = default);
     Task CreateAsync(MainRole mainRole, CancellationToken cancellationToken);
     Task CreateRangeAsync(List<MainRole> mainRoles, CancellationToken cancellationToken);
+
+    IQueryable<MainRole> GetAll();
 }

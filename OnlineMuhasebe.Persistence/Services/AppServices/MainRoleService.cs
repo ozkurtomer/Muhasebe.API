@@ -30,6 +30,11 @@ public sealed class MainRoleService : IMainRoleService
         await AppUnitOfWork.SaveChangesAsync(cancellationToken);
     }
 
+    public IQueryable<MainRole> GetAll()
+    {
+        return MainRoleQueryRepository.GetAll();
+    }
+
     public async Task<MainRole> GetByTitleAndCompanyId(string title, string companyId, CancellationToken cancellationToken = default)
     {
         if (companyId == null) return await MainRoleQueryRepository.GetFirstByExpression(x => x.Title == title, cancellationToken);
