@@ -27,6 +27,7 @@ public sealed class MainRoleService : IMainRoleService
     public async Task CreateRangeAsync(List<MainRole> mainRoles, CancellationToken cancellationToken)
     {
         await MainRoleCommandRepository.AddRangeAsync(mainRoles, cancellationToken);
+        await AppUnitOfWork.SaveChangesAsync(cancellationToken);
     }
 
     public async Task<MainRole> GetByTitleAndCompanyId(string title, string companyId, CancellationToken cancellationToken)
