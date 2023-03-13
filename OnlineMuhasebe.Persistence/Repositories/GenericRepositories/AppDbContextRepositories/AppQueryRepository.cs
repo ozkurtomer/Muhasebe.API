@@ -9,8 +9,7 @@ namespace OnlineMuhasebe.Persistence.Repositories.GenericRepositories.AppDbConte
 public class AppQueryRepository<TEntity> : IAppQueryRepository<TEntity> where TEntity : Entity
 {
     private static readonly Func<AppDbContext, string, bool, Task<TEntity>> GetByIdComplied = EF.CompileAsyncQuery((AppDbContext context, string id, bool isTracking) =>
-        isTracking ? context.Set<TEntity>().FirstOrDefault(x => x.Id == id)
-                   : context.Set<TEntity>().AsNoTracking().FirstOrDefault(x => x.Id == id)
+            context.Set<TEntity>().FirstOrDefault(x => x.Id == id)
     );
 
     private static readonly Func<AppDbContext, bool, Task<TEntity>> GetFirstComplied = EF.CompileAsyncQuery((AppDbContext context, bool isTracking) =>

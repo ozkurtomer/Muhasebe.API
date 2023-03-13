@@ -46,7 +46,7 @@ public sealed class MainRoleController : ApiController
     }
     
     [HttpPost("[action]")]
-    public async Task<IActionResult> UpdateMainRoleById(UpdateMainRoleCommand request)
+    public async Task<IActionResult> UpdateMainRole(UpdateMainRoleCommand request)
     {
         var result = await Mediator.Send(request);
         return Ok(result);
