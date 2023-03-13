@@ -39,7 +39,7 @@ public sealed class MainRoleController : ApiController
     }
 
     [HttpPost("[action]")]
-    public async Task<IActionResult> DeleteMainRoleById(DeleteByIdMainRoleCommand request)
+    public async Task<IActionResult> DeleteByIdMainRole(DeleteByIdMainRoleCommand request)
     {
         var result = await Mediator.Send(request);
         return Ok(result);

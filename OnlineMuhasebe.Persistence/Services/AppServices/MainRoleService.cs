@@ -45,6 +45,7 @@ public sealed class MainRoleService : IMainRoleService
     public async Task DeleteByIdAsync(string id)
     {
         await MainRoleCommandRepository.RemoveById(id);
+        await AppUnitOfWork.SaveChangesAsync(default);
     }
 
     public async Task<MainRole> GetByIdAsync(string id)
