@@ -41,4 +41,20 @@ public sealed class MainRoleService : IMainRoleService
 
         return await MainRoleQueryRepository.GetFirstByExpression(x => x.Title == title && x.CompanyId == companyId, cancellationToken, false);
     }
+
+    public async Task DeleteByIdAsync(string id)
+    {
+        await MainRoleCommandRepository.RemoveById(id);
+    }
+
+    public async Task<MainRole> GetByIdAsync(string id)
+    {
+        return await MainRoleQueryRepository.GetById(id);
+    }
+
+    public async Task UpdateAsync(MainRole mainRole, CancellationToken cancellationToken)
+    {
+        MainRoleCommandRepository.Update(mainRole);
+        await AppUnitOfWork.SaveChangesAsync(cancellationToken);
+    }
 }

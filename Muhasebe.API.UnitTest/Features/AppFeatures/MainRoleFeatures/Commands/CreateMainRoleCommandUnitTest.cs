@@ -26,7 +26,7 @@ public sealed class CreateMainRoleCommandUnitTest
     [Fact]
     public async Task MainRoleCommandResponseShouldNotBeNull()
     {
-        var command = new CreateMainRoleCommand("Admin",false, "49ff42cf-4ec4-45a3-91e5-044680e40105");
+        var command = new CreateMainRoleCommand(Title: "Admin", CompanyId: "49ff42cf-4ec4-45a3-91e5-044680e40105");
 
         var handler = new CreateMainRoleCommandHandler(MainRoleService.Object);
 

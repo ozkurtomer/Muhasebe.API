@@ -5,6 +5,11 @@ namespace OnlineMuhasebe.Domain.AppEntities;
 
 public sealed class MainRole : Entity
 {
+    public MainRole()
+    {
+
+    }
+
     public MainRole(string id, string title, string companyId = null, bool isRoleCreatedByAdmin = false) : base(id)
     {
         Title = title;
