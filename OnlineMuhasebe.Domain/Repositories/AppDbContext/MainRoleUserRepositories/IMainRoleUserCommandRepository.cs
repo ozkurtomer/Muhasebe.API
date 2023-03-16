@@ -5,5 +5,4 @@ namespace OnlineMuhasebe.Domain.Repositories.AppDbContext.MainRoleUserRepositori
 
 public interface IMainRoleUserCommandRepository : IAppCommandRepository<MainRoleUser>
 {
-
-}
+    }

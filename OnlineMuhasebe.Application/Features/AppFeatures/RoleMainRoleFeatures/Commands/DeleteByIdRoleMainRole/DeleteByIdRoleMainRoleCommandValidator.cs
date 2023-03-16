@@ -8,5 +8,4 @@ public sealed class DeleteByIdRoleMainRoleCommandValidator : AbstractValidator<D
 	{
 		RuleFor(x=>x.id).NotEmpty().WithMessage("Silmek istediğiniz rol bağlantısı boş olmamalıdır!");
 	}
-
 }
