@@ -46,4 +46,9 @@ public sealed class RoleMainRoleService : IRoleMainRoleService
     {
         return await RoleMainRoleQueryRepository.GetById(id);
     }
+
+    public async Task<RoleMainRole> GetByRoleIdMainRoleId(string roleId, string mainRoleId, CancellationToken cancellationToken)
+    {
+        return await RoleMainRoleQueryRepository.GetFirstByExpression(x => x.RoleId == roleId && x.MainRoleId == mainRoleId, cancellationToken);
+    }
 }

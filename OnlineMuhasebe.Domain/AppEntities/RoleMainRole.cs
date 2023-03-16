@@ -6,6 +6,16 @@ namespace OnlineMuhasebe.Domain.AppEntities;
 
 public sealed class RoleMainRole : Entity
 {
+    public RoleMainRole()
+    {
+
+    }
+
+    public RoleMainRole(string id, string roleId, string mainRoleId) : base(id)
+    {
+        RoleId = roleId;
+        MainRoleId = mainRoleId;
+    }
     public string RoleId { get; set; }
     public string MainRoleId { get; set; }
 

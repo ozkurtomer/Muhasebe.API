@@ -32,7 +32,7 @@ public sealed class AppUserCompanyService : IAppUserCompanyService
 
     public async Task<AppUserCompany> GetByUserIdAndCompanyId(string userId, string companyId, CancellationToken cancellationToken)
     {
-        return await QueryRepository.GetFirstByExpiression(p => p.AppUserId == userId && p.CompanyId == companyId, cancellationToken);
+        return await QueryRepository.GetFirstByExpression(x => x.AppUserId == userId && x.CompanyId == companyId, cancellationToken);
     }
 
     public async Task<IList<AppUserCompany>> GetListByUserId(string userId)

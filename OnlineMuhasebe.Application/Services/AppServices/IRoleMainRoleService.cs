@@ -1,4 +1,3 @@
-
 using OnlineMuhasebe.Domain.AppEntities;
 
 namespace OnlineMuhasebe.Application.Services.AppServices;
@@ -11,4 +10,5 @@ public interface IRoleMainRoleService
 
     IQueryable<RoleMainRole> GetAll();
     Task<RoleMainRole> GetByIdAsync(string id);
+    Task<RoleMainRole> GetByRoleIdMainRoleId(string roleId, string mainRoleId, CancellationToken cancellationToken);
 }
